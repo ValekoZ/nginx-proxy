@@ -11,11 +11,13 @@ steps:
     - sed -i 's/amd64/armhf/' upstream/Dockerfile
 
 - name: publish
-  docker:
-    image: armhfplugins/drone-docker:docker-caching
-    context: upstream
-    file: upstream/Dockerfile
-    username: $$DOCKER_USER
-    email: $$DOCKER_EMAIL
-    password: $$DOCKER_PASSWORD
+  image: armhfplugins/drone-docker:docker-caching
+  settings:
     repo: valekoz/nginx-proxy
+    username:
+      from_secret: DOCKER_USER
+    password:
+      from_secret: DOCKER_PASSWORD
+  when:
+    event:
+    - push

@@ -14,13 +14,8 @@ publish:
     username: $$DOCKER_USER
     email: $$DOCKER_EMAIL
     password: $$DOCKER_PASSWORD
-    repo: armhfbuild/nginx-proxy
+    repo: valekoz/nginx-proxy
 
 cache:
   mount:
     - /drone/docker
-
-notify:
-  slack:
-    webhook_url: $$SLACK_WEBHOOK_URL
-    channel: armhf

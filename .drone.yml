@@ -1,7 +1,8 @@
 kind: pipeline
 type: docker
 
-build:
+steps:
+- name: build
   image: armhfbuild/buildpack-deps:jessie-scm
   commands:
     - git clone https://github.com/jwilder/nginx-proxy upstream
@@ -9,7 +10,7 @@ build:
     - sed -i 's/https:\/\/.*\/forego/https:\/\/github.com\/djmaze\/armhf-forego\/releases\/download\/v0.16.1\/forego/' upstream/Dockerfile
     - sed -i 's/amd64/armhf/' upstream/Dockerfile
 
-publish:
+- name: publish
   docker:
     image: armhfplugins/drone-docker:docker-caching
     context: upstream
@@ -18,7 +19,3 @@ publish:
     email: $$DOCKER_EMAIL
     password: $$DOCKER_PASSWORD
     repo: valekoz/nginx-proxy
-
-cache:
-  mount:
-    - /drone/docker

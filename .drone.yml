@@ -1,6 +1,10 @@
 kind: pipeline
 type: docker
 
+platform:
+  arch: arm
+  os: linux
+
 steps:
 - name: build
   image: armhfbuild/buildpack-deps:jessie-scm

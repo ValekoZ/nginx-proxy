@@ -15,7 +15,7 @@ steps:
     - sed -i 's/amd64/armhf/' upstream/Dockerfile
 
 - name: publish
-  image: armhfplugins/drone-docker:docker-caching
+  image: plugins/docker:18
   settings:
     repo: valekoz/nginx-proxy
     username:

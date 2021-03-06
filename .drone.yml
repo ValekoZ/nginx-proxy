@@ -9,10 +9,10 @@ steps:
 - name: build
   image: armhfbuild/buildpack-deps:jessie-scm
   commands:
-    - git clone https://github.com/jwilder/nginx-proxy upstream
-    - sed -i 's/FROM nginx:1\.9\../FROM armhfbuild\\/nginx:1.9.9/' upstream/Dockerfile
-    - sed -i 's/https:\\/\\/.*\\/forego/https:\\/\\/github.com\\/djmaze\\/armhf-forego\\/releases\\/download\\/v0.16.1\\/forego/' upstream/Dockerfile
-    - sed -i 's/amd64/armhf/' upstream/Dockerfile
+    - git clone https://github.com/jwilder/nginx-proxy .
+    - sed -i 's/FROM nginx:1\.9\../FROM armhfbuild\\/nginx:1.9.9/' ./Dockerfile
+    - sed -i 's/https:\\/\\/.*\\/forego/https:\\/\\/github.com\\/djmaze\\/armhf-forego\\/releases\\/download\\/v0.16.1\\/forego/' ./Dockerfile
+    - sed -i 's/amd64/armhf/' ./Dockerfile
 
 - name: publish
   image: plugins/docker:18
